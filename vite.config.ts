@@ -20,6 +20,7 @@ export default defineConfig({
       ]
     })
   ],
+  envPrefix: ["VITE_", "DRIZZLE_", "DB_"],
   esbuild: {
     jsxFactory: "elements.createElement",
     jsxInject: `import * as elements from "typed-html/dist/src/elements"`

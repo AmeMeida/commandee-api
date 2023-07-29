@@ -24,6 +24,7 @@
     "@types/js-yaml": "^4.0.5",
     "@types/json-schema": "^7.0.12",
     "@types/node": "^20.4.2",
+    "drizzle-kit": "^0.19.12",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "prettier": "^3.0.0",
@@ -41,8 +42,10 @@
     "@fastify/swagger": "^8.8.0",
     "@sinclair/typebox": "^0.29.6",
     "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.27.2",
     "fastify": "^4.20.0",
     "js-yaml": "^4.1.0",
+    "mysql2": "^3.5.2",
     "typed-html": "^3.0.1"
   },
   "contributors": [
