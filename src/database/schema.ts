@@ -9,7 +9,7 @@ import {
 } from "drizzle-orm/mysql-core";
 
 export const commanda = mysqlTable("commanda", {
-  id: varchar("id", { length: 255 }).primaryKey(),
+  id: serial("id").primaryKey(),
   costumer: varchar("costumer", { length: 255 }).notNull(),
   table: int("table"),
   restaurant: int("restaurant_id")
@@ -44,10 +44,10 @@ export const itemRelations = relations(item, ({ one, many }) => ({
 
 export const order = mysqlTable("order", {
   id: serial("id").primaryKey(),
-  commanda: varchar("commanda_id", { length: 255 })
+  commanda: serial("commanda_id")
     .notNull()
     .references(() => commanda.id),
-  item: int("item_id")
+  item: serial("item_id")
     .notNull()
     .references(() => item.id),
   restaurant: varchar("restaurant_id", { length: 255 })
