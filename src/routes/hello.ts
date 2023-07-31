@@ -13,6 +13,7 @@ export default async function (fastify: FastifyInstance) {
       .from(order)
       .innerJoin(commanda, eq(order.commanda, commanda.id))
       .where(eq(order.status, "done"));
+
     return reply.send(orders);
   });
 }
