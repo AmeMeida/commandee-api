@@ -9,7 +9,6 @@ import type {
   JSONSchema7
 } from "json-schema-to-ts";
 import YAML from "js-yaml";
-import { HOST, PORT } from "./enviroment";
 import fs from "fs/promises";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -211,6 +210,8 @@ if (import.meta.env.PROD) {
       encoding: "utf8"
     }
   );
+
+  const { PORT, HOST } = await import("./enviroment");
 
   fastify.listen({ port: PORT, host: HOST }, (err, address) => {
     if (err) {

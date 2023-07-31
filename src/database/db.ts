@@ -1,7 +1,11 @@
-import { drizzle } from "drizzle-orm/mysql2";
-import mysql from "mysql2/promise";
+import { drizzle } from "drizzle-orm/planetscale-serverless";
+import { connect } from "@planetscale/database";
 import * as schema from "./schema";
+import { DATABASE_URL } from "../enviroment";
 
-const pool = mysql.createPool(import.meta.env.DATABASE_URL);
+const connection = connect({ url: DATABASE_URL });
 
-export default drizzle(pool, { schema });
+export default drizzle(connection, {
+  schema,
+  logger: true
+});
