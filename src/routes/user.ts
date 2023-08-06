@@ -2,10 +2,10 @@ import { eq, placeholder } from "drizzle-orm";
 import { FastifyInstance } from "..";
 import { encrypt } from "../crypt";
 import db from "../database/db";
-import { employee } from "../database/schema";
+import { employeeTable } from "../database/schema";
 import { nanoid } from "nanoid/async";
 
-const selectAllQuery = db.select().from(employee).prepare();
+const selectAllQuery = db.select().from(employeeTable).prepare();
 
 export default async function (fastify: FastifyInstance) {
   fastify.get(
@@ -42,9 +42,13 @@ export default async function (fastify: FastifyInstance) {
   );
 
   const userByUsername = db
-    .select()
-    .from(employee)
-    .where(eq(employee.username, placeholder("username")))
+    .select({
+      id: employeeTable.id,
+      username: employeeTable.username,
+      email: employeeTable.email
+    })
+    .from(employeeTable)
+    .where(eq(employeeTable.username, placeholder("username")))
     .prepare();
 
   fastify.get(
@@ -102,15 +106,15 @@ export default async function (fastify: FastifyInstance) {
     async (request, reply) => {
       const user = request.body;
 
-      const [id, encryptedPassword] = await Promise.all([
+      const [publicId, encryptedPassword] = await Promise.all([
         nanoid(),
         encrypt(user.password)
       ]);
 
-      const status = await db.insert(employee).values({
+      const status = await db.insert(employeeTable).values({
         ...user,
-        id,
-        password: encryptedPassword
+        password: encryptedPassword,
+        publicId
       });
 
       if (status.rowsAffected !== 1) {
