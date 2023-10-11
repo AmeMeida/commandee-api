@@ -1,0 +1,16 @@
+meta {
+  name: login
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://143.106.241.36:3000/user/login
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-urlencoded {
+  email: ame.pistache@gmail.com
+  password: senhasenha
+}

@@ -1,0 +1,15 @@
+meta {
+  name: whoami
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://143.106.241.36:3000/user/whoami
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiY3lWVk8zdm91elFrQVFVIiwiaWF0IjoxNjk3MDI0NDA1LCJleHAiOjE2OTcwMjQ1MjV9.dvgtZR87jsyPhvJ38UGK-4Utg3V4POLl_EL7aY3bG7k
+}
