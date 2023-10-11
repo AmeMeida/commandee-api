@@ -51,6 +51,8 @@ export default async function (fastify: FastifyInstance) {
       } as const
     },
     async (request, reply) => {
+      await fastify.authenticate(request, reply);
+
       const { userId } = request.user;
       const { id: restaurantId } = request.body;
 

@@ -67,7 +67,7 @@ fastify.register(import("@fastify/jwt"), {
     signed: false
   },
   sign: {
-    expiresIn: "120s"
+    expiresIn: "1h"
   }
 });
 
